@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<nsi:document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nsi="urn://x-artefacts-nsi-gov-ru/services/cnsi/2.0.0.0">
+	<nsi:simple-classifier code="SFR_CO" name="Клиентские службы СФР" uid="2fad55ce-854c-4044-873e-7ae806cc94cb" version="55" public-id="01-10991" tech-name="dr_2fad55ce854c4044873e7ae806cc94cb" key-attribute-ref="bd4e9c55-8587-4d85-a0ae-e9c9aa9f4ec1">
+		<nsi:description>
+			<![CDATA[SFR_CO]]>
+		</nsi:description>
+		<nsi:integer-attribute uid="302db954-eae3-4311-9b5f-fc1e6893b92d" name="COID" required="true" autoFill="false" tech-name="f_302db954eae343119b5ffc1e6893b92d" unique="false" autoKeyPartNum="1">
+		</nsi:integer-attribute>
+		<nsi:string-attribute uid="cf6621f2-438d-4744-8158-63bb963bb11f" name="ToSfrCode" required="true" autoFill="false" tech-name="f_cf6621f2438d4744815863bb963bb11f" unique="false" length="3" checkObscene="true" checkOrthography="false"/>
+		<nsi:string-attribute uid="fea2973c-541f-422d-9093-102c50c1f7cb" name="RegionCode" required="true" autoFill="false" tech-name="f_fea2973c541f422d9093102c50c1f7cb" unique="false" length="3" checkObscene="true" checkOrthography="false"/>
+		<nsi:string-attribute uid="94737d3c-3d52-47f5-bdd5-e4999fb9dbca" name="RegionName" required="true" autoFill="false" tech-name="f_94737d3c3d5247f5bdd5e4999fb9dbca" unique="false" length="255" checkObscene="true" checkOrthography="false"/>
+		<nsi:string-attribute uid="8e09f25b-03c8-442c-a1ad-3e88ec5ca9a6" name="DivisionCode" required="false" autoFill="false" tech-name="f_8e09f25b03c8442ca1ad3e88ec5ca9a6" unique="false" length="3" checkObscene="true" checkOrthography="false"/>
+		<nsi:string-attribute uid="be8a9ab5-6a94-4e0c-ac37-cd7953875561" name="OfficeCode" required="true" autoFill="false" tech-name="f_be8a9ab56a944e0cac37cd7953875561" unique="false" length="3" checkObscene="true" checkOrthography="false"/>
+		<nsi:string-attribute uid="591ca246-0f03-47b6-be58-d8da20b0c3f8" name="OfficeDistrictName" required="false" autoFill="false" tech-name="f_591ca2460f0347b6be58d8da20b0c3f8" unique="false" length="255" checkObscene="true" checkOrthography="false"/>
+		<nsi:string-attribute uid="4f03ecb5-83ea-43d7-8ee9-1cb13b5ecf3c" name="ToSfrName" required="false" autoFill="false" tech-name="f_4f03ecb583ea43d78ee91cb13b5ecf3c" unique="false" length="255" checkObscene="true" checkOrthography="false"/>
+		<nsi:integer-attribute uid="bc947ef4-bc67-433a-99a3-10654ff62698" name="OfficeType" required="true" autoFill="false" tech-name="f_bc947ef4bc67433a99a310654ff62698" unique="false">
+		</nsi:integer-attribute>
+		<nsi:integer-attribute uid="55a33f91-abd3-4893-8747-edb8547af9ab" name="Predecessor" required="true" autoFill="false" tech-name="f_55a33f91abd348938747edb8547af9ab" unique="false" autoKeyPartNum="2">
+		</nsi:integer-attribute>
+		<nsi:string-attribute uid="6f9ba61b-6444-428c-9f0b-87de7250a0ff" name="Address" required="true" autoFill="false" tech-name="f_6f9ba61b6444428c9f0b87de7250a0ff" unique="false" length="255" checkObscene="true" checkOrthography="false"/>
+		<nsi:string-attribute uid="2998c97b-512d-41f1-a8d7-932a9aa5de01" name="OKATO" required="true" autoFill="false" tech-name="f_2998c97b512d41f1a8d7932a9aa5de01" unique="false" length="11" checkObscene="true" checkOrthography="true"/>
+		<nsi:string-attribute uid="8da71014-3f89-49f9-b968-50e4203bdb96" name="OKATO_Area" required="false" autoFill="false" tech-name="f_8da710143f8949f9b96850e4203bdb96" unique="false" length="255" checkObscene="true" checkOrthography="true"/>
+		<nsi:string-attribute uid="9db3c937-a30d-4c66-ab62-5fd639516b25" name="OKTMO" required="true" autoFill="false" tech-name="f_9db3c937a30d4c66ab625fd639516b25" unique="false" length="11" checkObscene="true" checkOrthography="true"/>
+		<nsi:string-attribute uid="8ba03f70-a454-4ef6-90c0-3cd554cfc486" name="OKTMO_Area" required="false" autoFill="false" tech-name="f_8ba03f70a4544ef690c03cd554cfc486" unique="false" length="255" checkObscene="true" checkOrthography="true"/>
+		<nsi:string-attribute uid="12f36a5d-13db-437a-a81b-3e7fbfa176cc" name="Email" required="true" autoFill="false" tech-name="f_12f36a5d13db437aa81b3e7fbfa176cc" unique="false" length="255" checkObscene="true" checkOrthography="true"/>
+		<nsi:string-attribute uid="5a06ba41-e5ab-4fc9-b858-52ffc3d10f5f" name="Phone" required="true" autoFill="false" tech-name="f_5a06ba41e5ab4fc9b85852ffc3d10f5f" unique="false" length="255" checkObscene="true" checkOrthography="true"/>
+		<nsi:string-attribute uid="104af4c5-abaa-46df-9168-211cac915035" name="Latitude" required="true" autoFill="false" tech-name="f_104af4c5abaa46df9168211cac915035" unique="false" length="255" checkObscene="true" checkOrthography="true"/>
+		<nsi:string-attribute uid="4aa5be06-2b2b-4f18-8350-140efb330ab3" name="Longitude" required="true" autoFill="false" tech-name="f_4aa5be062b2b4f188350140efb330ab3" unique="false" length="255" checkObscene="true" checkOrthography="true"/>
+		<nsi:string-attribute uid="44c563cd-ac50-4b95-becd-02075527ebc1" name="WorkingTime" required="true" autoFill="false" tech-name="f_44c563cdac504b95becd02075527ebc1" unique="false" length="255" checkObscene="true" checkOrthography="false"/>
+		<nsi:string-attribute uid="ae004d75-a8b7-4bbb-bb2a-6dcf845f8d76" name="UTC" required="true" autoFill="false" tech-name="f_ae004d75a8b74bbbbb2a6dcf845f8d76" unique="false" length="9" checkObscene="true" checkOrthography="true"/>
+		<nsi:integer-attribute uid="fc54f888-58c2-432e-9e3b-f3edea0280a4" name="MSK" required="true" autoFill="false" tech-name="f_fc54f88858c2432e9e3bf3edea0280a4" unique="false">
+		</nsi:integer-attribute>
+		<nsi:string-attribute uid="501657e8-2103-4bac-9392-57fb56a96feb" name="TOFSS" required="false" autoFill="false" tech-name="f_501657e821034bac939257fb56a96feb" unique="false" length="4" checkObscene="true" checkOrthography="false"/>
+		<nsi:string-attribute uid="bd4e9c55-8587-4d85-a0ae-e9c9aa9f4ec1" name="autokey" required="true" autoFill="false" tech-name="autokey" unique="true" checkObscene="false" checkOrthography="false"/>
+	</nsi:simple-classifier>
+	<nsi:data classifier-ref="2fad55ce-854c-4044-873e-7ae806cc94cb">
+		<nsi:record uid="6907a38d-073f-4c3d-ba53-78aa4ae14482">
+			<nsi:attribute-value attribute-ref="302db954-eae3-4311-9b5f-fc1e6893b92d">
+				<nsi:integer>1831</nsi:integer>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="cf6621f2-438d-4744-8158-63bb963bb11f">
+				<nsi:string>210</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="fea2973c-541f-422d-9093-102c50c1f7cb">
+				<nsi:string>013</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="94737d3c-3d52-47f5-bdd5-e4999fb9dbca">
+				<nsi:string>Республика Татарстан</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="8e09f25b-03c8-442c-a1ad-3e88ec5ca9a6">
+				<nsi:string>401</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="be8a9ab5-6a94-4e0c-ac37-cd7953875561">
+				<nsi:string>401</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="591ca246-0f03-47b6-be58-d8da20b0c3f8">
+				<nsi:string>г. Набережные Челны</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="4f03ecb5-83ea-43d7-8ee9-1cb13b5ecf3c">
+				<nsi:string>Клиентская служба СФР в г. Набережные Челны (пр-кт Мира)</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="bc947ef4-bc67-433a-99a3-10654ff62698">
+				<nsi:integer>2</nsi:integer>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="55a33f91-abd3-4893-8747-edb8547af9ab">
+				<nsi:integer>1</nsi:integer>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="6f9ba61b-6444-428c-9f0b-87de7250a0ff">
+				<nsi:string>423812, Республика Татарстан, г. Набережные Челны, пр-кт Мира, д 24Е (7/20)</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="2998c97b-512d-41f1-a8d7-932a9aa5de01">
+				<nsi:string>92430000000</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="8da71014-3f89-49f9-b968-50e4203bdb96">
+                <!-- Невалидный OKATOArea -->
+				<nsi:string> </nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="9db3c937-a30d-4c66-ab62-5fd639516b25">
+				<nsi:string>92730000001</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="8ba03f70-a454-4ef6-90c0-3cd554cfc486">
+				<nsi:string>92430</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="12f36a5d-13db-437a-a81b-3e7fbfa176cc">
+				<nsi:string>tatarstan@16.sfr.gov.ru</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="5a06ba41-e5ab-4fc9-b858-52ffc3d10f5f">
+				<nsi:string>8 (800) 100-00-01</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="104af4c5-abaa-46df-9168-211cac915035">
+				<nsi:string>55.7310453</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="4aa5be06-2b2b-4f18-8350-140efb330ab3">
+				<nsi:string>52.3967788</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="44c563cd-ac50-4b95-becd-02075527ebc1">
+				<nsi:string>Пн-Чт: с 8:00 до 17:00, Пт: с 8:00 до 15:45, без перерыва</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="ae004d75-a8b7-4bbb-bb2a-6dcf845f8d76">
+				<nsi:string>UTC+03:00</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="fc54f888-58c2-432e-9e3b-f3edea0280a4">
+				<nsi:integer>0</nsi:integer>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="501657e8-2103-4bac-9392-57fb56a96feb">
+				<nsi:string>1600</nsi:string>
+			</nsi:attribute-value>
+			<nsi:attribute-value attribute-ref="bd4e9c55-8587-4d85-a0ae-e9c9aa9f4ec1">
+				<nsi:string>SFR_CO_1831_1</nsi:string>
+			</nsi:attribute-value>
+		</nsi:record>
+	</nsi:data>
+</nsi:document>
