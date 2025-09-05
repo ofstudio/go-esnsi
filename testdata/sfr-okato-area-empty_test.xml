@@ -72,13 +72,14 @@
 				<nsi:string>92430000000</nsi:string>
 			</nsi:attribute-value>
 			<nsi:attribute-value attribute-ref="8da71014-3f89-49f9-b968-50e4203bdb96">
-				<nsi:string>92430, 92432</nsi:string>
+                <!-- Пустое значение OKATOArea -->
+				<nsi:string>123456,</nsi:string>
 			</nsi:attribute-value>
 			<nsi:attribute-value attribute-ref="9db3c937-a30d-4c66-ab62-5fd639516b25">
 				<nsi:string>92730000001</nsi:string>
 			</nsi:attribute-value>
 			<nsi:attribute-value attribute-ref="8ba03f70-a454-4ef6-90c0-3cd554cfc486">
-				<nsi:string>92730</nsi:string>
+				<nsi:string>92430</nsi:string>
 			</nsi:attribute-value>
 			<nsi:attribute-value attribute-ref="12f36a5d-13db-437a-a81b-3e7fbfa176cc">
 				<nsi:string>tatarstan@16.sfr.gov.ru</nsi:string>
@@ -108,80 +109,80 @@
 				<nsi:string>SFR_CO_1831_1</nsi:string>
 			</nsi:attribute-value>
 		</nsi:record>
-		<nsi:record uid="13a10d15-7ff1-44e3-af76-a1c9d0e24ad6">
-			<nsi:attribute-value attribute-ref="302db954-eae3-4311-9b5f-fc1e6893b92d">
-				<nsi:integer>949</nsi:integer>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="cf6621f2-438d-4744-8158-63bb963bb11f">
-				<nsi:string>201</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="fea2973c-541f-422d-9093-102c50c1f7cb">
-				<nsi:string>087</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="94737d3c-3d52-47f5-bdd5-e4999fb9dbca">
-				<nsi:string>Москва</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="8e09f25b-03c8-442c-a1ad-3e88ec5ca9a6">
-				<nsi:string>214</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="be8a9ab5-6a94-4e0c-ac37-cd7953875561">
-				<nsi:string>214</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="591ca246-0f03-47b6-be58-d8da20b0c3f8">
-				<nsi:string>Тимирязевский</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="4f03ecb5-83ea-43d7-8ee9-1cb13b5ecf3c">
-				<nsi:string>Клиентская служба СФР Тимирязевский</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="bc947ef4-bc67-433a-99a3-10654ff62698">
-				<nsi:integer>2</nsi:integer>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="55a33f91-abd3-4893-8747-edb8547af9ab">
-				<nsi:integer>1</nsi:integer>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="6f9ba61b-6444-428c-9f0b-87de7250a0ff">
-				<nsi:string>127422, г. Москва, Дмитровский пр., д. 16, корп. 2</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="2998c97b-512d-41f1-a8d7-932a9aa5de01">
-				<nsi:string>45277592000</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="8da71014-3f89-49f9-b968-50e4203bdb96">
-        <!-- Дубликат окато -->
-				<nsi:string>92432 </nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="9db3c937-a30d-4c66-ab62-5fd639516b25">
-				<nsi:string>45346000000</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="8ba03f70-a454-4ef6-90c0-3cd554cfc486">
-				<nsi:string>45346</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="12f36a5d-13db-437a-a81b-3e7fbfa176cc">
-				<nsi:string>smiosfr@77.sfr.gov.ru</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="5a06ba41-e5ab-4fc9-b858-52ffc3d10f5f">
-				<nsi:string>8 (800) 100-00-01</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="104af4c5-abaa-46df-9168-211cac915035">
-				<nsi:string>55.808564</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="4aa5be06-2b2b-4f18-8350-140efb330ab3">
-				<nsi:string>37.566153</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="44c563cd-ac50-4b95-becd-02075527ebc1">
-				<nsi:string>Пн-Чт: с 9:00 до 18:00, Пт: с 9:00 до 16:45, последняя Сб месяца: с 9:00 до 15:45</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="ae004d75-a8b7-4bbb-bb2a-6dcf845f8d76">
-				<nsi:string>UTC+03:00</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="fc54f888-58c2-432e-9e3b-f3edea0280a4">
-				<nsi:integer>0</nsi:integer>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="501657e8-2103-4bac-9392-57fb56a96feb">
-				<nsi:string>7700</nsi:string>
-			</nsi:attribute-value>
-			<nsi:attribute-value attribute-ref="bd4e9c55-8587-4d85-a0ae-e9c9aa9f4ec1">
-				<nsi:string>SFR_CO_949_1</nsi:string>
-			</nsi:attribute-value>
-		</nsi:record>
-	</nsi:data>
+        <nsi:record uid="13a10d15-7ff1-44e3-af76-a1c9d0e24ad6">
+            <nsi:attribute-value attribute-ref="302db954-eae3-4311-9b5f-fc1e6893b92d">
+                <nsi:integer>949</nsi:integer>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="cf6621f2-438d-4744-8158-63bb963bb11f">
+                <nsi:string>201</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="fea2973c-541f-422d-9093-102c50c1f7cb">
+                <nsi:string>087</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="94737d3c-3d52-47f5-bdd5-e4999fb9dbca">
+                <nsi:string>Москва</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="8e09f25b-03c8-442c-a1ad-3e88ec5ca9a6">
+                <nsi:string>214</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="be8a9ab5-6a94-4e0c-ac37-cd7953875561">
+                <nsi:string>214</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="591ca246-0f03-47b6-be58-d8da20b0c3f8">
+                <nsi:string>Тимирязевский</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="4f03ecb5-83ea-43d7-8ee9-1cb13b5ecf3c">
+                <nsi:string>Клиентская служба СФР Тимирязевский</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="bc947ef4-bc67-433a-99a3-10654ff62698">
+                <nsi:integer>2</nsi:integer>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="55a33f91-abd3-4893-8747-edb8547af9ab">
+                <nsi:integer>1</nsi:integer>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="6f9ba61b-6444-428c-9f0b-87de7250a0ff">
+                <nsi:string>127422, г. Москва, Дмитровский пр., д. 16, корп. 2</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="2998c97b-512d-41f1-a8d7-932a9aa5de01">
+                <nsi:string>45277592000</nsi:string>
+            </nsi:attribute-value>
+            <!-- Пустой OKATOArea -->
+            <nsi:attribute-value attribute-ref="8da71014-3f89-49f9-b968-50e4203bdb96">
+                <nsi:string> </nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="9db3c937-a30d-4c66-ab62-5fd639516b25">
+                <nsi:string>45346000000</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="8ba03f70-a454-4ef6-90c0-3cd554cfc486">
+                <nsi:string>45346</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="12f36a5d-13db-437a-a81b-3e7fbfa176cc">
+                <nsi:string>smiosfr@77.sfr.gov.ru</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="5a06ba41-e5ab-4fc9-b858-52ffc3d10f5f">
+                <nsi:string>8 (800) 100-00-01</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="104af4c5-abaa-46df-9168-211cac915035">
+                <nsi:string>55.808564</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="4aa5be06-2b2b-4f18-8350-140efb330ab3">
+                <nsi:string>37.566153</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="44c563cd-ac50-4b95-becd-02075527ebc1">
+                <nsi:string>Пн-Чт: с 9:00 до 18:00, Пт: с 9:00 до 16:45, последняя Сб месяца: с 9:00 до 15:45</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="ae004d75-a8b7-4bbb-bb2a-6dcf845f8d76">
+                <nsi:string>UTC+03:00</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="fc54f888-58c2-432e-9e3b-f3edea0280a4">
+                <nsi:integer>0</nsi:integer>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="501657e8-2103-4bac-9392-57fb56a96feb">
+                <nsi:string>7700</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="bd4e9c55-8587-4d85-a0ae-e9c9aa9f4ec1">
+                <nsi:string>SFR_CO_949_1</nsi:string>
+            </nsi:attribute-value>
+        </nsi:record>
+    </nsi:data>
 </nsi:document>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<nsi:document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nsi="urn://x-artefacts-nsi-gov-ru/services/cnsi/2.0.0.0">
+    <nsi:simple-classifier code="classifierOkato" name="Общероссийский классификатор объектов административно-территориального деления (ОКАТО)" uid="b8628acb-01f8-41e9-8fce-a5e62e6256ab" version="7" public-id="01-16270" tech-name="OKATO_RST" updatePeriod="365" checksum="0" key-attribute-ref="358d8c23-055f-4df7-ad8c-76fd92f66336">
+
+        <nsi:string-attribute uid="ccbfe331-5e63-4e6e-8bb6-d4cc7446682f" name="Код" required="true" autoFill="false" tech-name="code" unique="false" autoKeyPartNum="1" length="64" checkObscene="false" checkOrthography="false"/>
+        <nsi:string-attribute uid="51c4adfc-e720-49b3-90e4-3f0e8a05f1c9" name="КЧ" required="false" autoFill="false" tech-name="k4" unique="false" length="4" checkObscene="false" checkOrthography="false"/>
+        <nsi:string-attribute uid="0976afbb-7a95-4bda-ae19-eda132706837" name="Наименование" required="false" autoFill="false" tech-name="name" unique="false" length="2048" checkObscene="false" checkOrthography="false"/>
+        <nsi:string-attribute uid="51fa43b9-5de3-4add-ae76-dd4c9d737bbe" name="Дополнительные данные" required="false" autoFill="false" tech-name="additional_data" unique="false" length="2048" checkObscene="false" checkOrthography="false"/>
+        <nsi:string-attribute uid="358d8c23-055f-4df7-ad8c-76fd92f66336" name="autokey" required="true" autoFill="false" tech-name="autokey" unique="true" checkObscene="false" checkOrthography="false"/>
+    </nsi:simple-classifier>
+    <nsi:data classifier-ref="b8628acb-01f8-41e9-8fce-a5e62e6256ab">
+        <nsi:record uid="6135173a-40a7-48f6-8633-99ab89150ba3">
+            <nsi:attribute-value attribute-ref="ccbfe331-5e63-4e6e-8bb6-d4cc7446682f">
+                <nsi:string>01.201.800</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="51c4adfc-e720-49b3-90e4-3f0e8a05f1c9">
+                <nsi:string>6</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="0976afbb-7a95-4bda-ae19-eda132706837">
+                <nsi:string>Сельсоветы Алейского р-на</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="358d8c23-055f-4df7-ad8c-76fd92f66336">
+                <nsi:string>classifierOkato_01.201.800</nsi:string>
+            </nsi:attribute-value>
+        </nsi:record>
+        <!--    Дубликат!    -->
+        <nsi:record uid="dc9f5a88-1826-481b-9174-ed6d8efa04c8">
+            <nsi:attribute-value attribute-ref="ccbfe331-5e63-4e6e-8bb6-d4cc7446682f">
+                <nsi:string>01.201.800</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="51c4adfc-e720-49b3-90e4-3f0e8a05f1c9">
+                <nsi:string>2</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="0976afbb-7a95-4bda-ae19-eda132706837">
+                <nsi:string>с Малахово</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="358d8c23-055f-4df7-ad8c-76fd92f66336">
+                <nsi:string>classifierOkato_01.201.802.002</nsi:string>
+            </nsi:attribute-value>
+        </nsi:record>
+    </nsi:data>
+</nsi:document>
