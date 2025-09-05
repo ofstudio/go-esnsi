@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nsi="urn://x-artefacts-nsi-gov-ru/services/cnsi/2.0.0.0" targetNamespace="urn://x-artefacts-nsi-gov-ru/services/cnsi/2.0.0.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0.0.0">
+    <xs:complexType name="composite-classifier">
+        <xs:annotation>
+            <xs:documentation>Описание структуры составного справочника</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="nsi:base-classifier-entity">
+                <xs:choice>
+                    <xs:sequence>
+                        <xs:element name="classifier" type="nsi:classifier-nested-entity" minOccurs="2" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:choice>
+                <xs:attribute name="version">
+                    <xs:annotation>
+                        <xs:documentation>Номер ревизии справочника</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="entity-description">
+        <xs:annotation>
+            <xs:documentation>Описание</xs:documentation>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string"/>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="classifier-attribute-entity" abstract="true">
+        <xs:annotation>
+            <xs:documentation>Атрибут справочника</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="uid" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:maxLength value="36"/>
+                    <xs:minLength value="3"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="required" type="xs:boolean" use="optional" default="false"/>
+    </xs:complexType>
+    <xs:complexType name="classifier-nested-entity">
+        <xs:annotation>
+            <xs:documentation>Образующий справочник</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="nsi:base-classifier-entity">
+                <xs:sequence>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element name="string-attribute" type="nsi:classifier-string-attribute"/>
+                        <xs:element name="boolean-attribute" type="nsi:classifier-boolean-attribute"/>
+                        <xs:element name="date-attribute" type="nsi:classifier-date-attribute"/>
+                        <xs:element name="integer-attribute" type="nsi:classifier-integer-attribute"/>
+                        <xs:element name="decimal-attribute" type="nsi:classifier-decimal-attribute"/>
+                        <xs:element name="text-attribute" type="nsi:classifier-text-attribute"/>
+                        <xs:element name="reference-attribute" type="nsi:classifier-reference-attribute"/>
+                    </xs:choice>
+                </xs:sequence>
+                <xs:attribute name="key-attribute-ref">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="3"/>
+                            <xs:maxLength value="36"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="base-classifier-entity">
+        <xs:annotation>
+            <xs:documentation>Базовое описание структуры справочника</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="description" type="nsi:entity-description" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Описание справочника</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" use="required">
+            <xs:annotation>
+                <xs:documentation>Наименование справочника.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="1"/>
+                    <xs:maxLength value="255"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="code" use="required">
+            <xs:annotation>
+                <xs:documentation>Код справочника</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="1"/>
+                    <xs:maxLength value="255"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="uid" use="required">
+            <xs:annotation>
+                <xs:documentation>Уникалный идентификатор справочника</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:maxLength value="36"/>
+                    <xs:minLength value="3"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:element name="document">
+        <xs:annotation>
+            <xs:documentation>Документ загрузки данных</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice>
+                <xs:sequence>
+                    <xs:choice>
+                        <xs:element name="composite-classifier" type="nsi:composite-classifier"/>
+                        <xs:element name="simple-classifier" type="nsi:simple-classifier">
+                            <!--xs:keyref name="AttributeUidRef" refer="AttributeUid">
+                                <xs:selector xpath="."/>
+                                <xs:field xpath="@key-attribute-ref"/>
+                            </xs:keyref>
+                            <xs:key name="AttributeUid">
+                                <xs:selector xpath="./*[@uid]"/>
+                                <xs:field xpath="@uid"/>
+                            </xs:key-->
+                        </xs:element>
+                    </xs:choice>
+                    <xs:choice minOccurs="0">
+                        <xs:element name="composite-data" type="nsi:composite-data"/>
+                        <xs:element name="data" type="nsi:classifier-data"/>
+                    </xs:choice>
+                </xs:sequence>
+                <xs:choice minOccurs="0">
+                    <xs:element name="composite-data" type="nsi:composite-data"/>
+                    <xs:element name="data" type="nsi:classifier-data"/>
+                </xs:choice>
+            </xs:choice>
+        </xs:complexType>
+        <xs:unique name="UniqueUid">
+            <xs:selector xpath="./nsi:simple-classifier | ./nsi:simple-classifier/* | ./nsi:composite-classifier | ./*/nsi:classifier | ./*/nsi:classifier/* | .//nsi:record"/>
+            <xs:field xpath="@uid"/>
+        </xs:unique>
+    </xs:element>
+    <xs:complexType name="classifier-string-attribute" mixed="true">
+        <xs:complexContent>
+            <xs:extension base="nsi:classifier-attribute-entity">
+                <xs:attribute name="regex" type="xs:string"/>
+                <xs:attribute name="length">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                            <xs:minInclusive value="1"/>
+                            <xs:maxInclusive value="255"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="classifier-text-attribute" mixed="true">
+        <xs:complexContent>
+            <xs:extension base="nsi:classifier-attribute-entity">
+                <xs:attribute name="regex" type="xs:string"/>
+                <xs:attribute name="length">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                            <xs:minInclusive value="1"/>
+                            <xs:maxInclusive value="10000000"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="classifier-date-attribute">
+        <xs:complexContent>
+            <xs:extension base="nsi:classifier-attribute-entity">
+                <xs:sequence>
+                    <xs:element name="range" minOccurs="0">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="nsi:date-range"/>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="attribute-range" type="nsi:attribute-range" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="classifier-boolean-attribute" mixed="true">
+        <xs:complexContent>
+            <xs:extension base="nsi:classifier-attribute-entity"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="classifier-integer-attribute">
+        <xs:complexContent>
+            <xs:extension base="nsi:classifier-attribute-entity">
+                <xs:sequence>
+                    <xs:element name="range" minOccurs="0">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="nsi:int-range"/>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="attribute-range" type="nsi:attribute-range" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="classifier-decimal-attribute">
+        <xs:complexContent>
+            <xs:extension base="nsi:classifier-attribute-entity">
+                <xs:sequence>
+                    <xs:element name="range" minOccurs="0">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="nsi:decimal-range"/>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="attribute-range" type="nsi:attribute-range" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="classifier-reference-attribute" mixed="true">
+        <xs:complexContent>
+            <xs:extension base="nsi:classifier-attribute-entity">
+                <xs:attribute name="ref-attribute-uid" use="required">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="3"/>
+                            <xs:maxLength value="36"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="attribute-range">
+        <xs:attribute name="from">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="2"/>
+                    <xs:maxLength value="36"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="to">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="2"/>
+                    <xs:maxLength value="36"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="simple-classifier">
+        <xs:complexContent>
+            <xs:extension base="nsi:base-classifier-entity">
+                <xs:sequence>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element name="string-attribute" type="nsi:classifier-string-attribute"/>
+                        <xs:element name="boolean-attribute" type="nsi:classifier-boolean-attribute"/>
+                        <xs:element name="date-attribute" type="nsi:classifier-date-attribute"/>
+                        <xs:element name="integer-attribute" type="nsi:classifier-integer-attribute"/>
+                        <xs:element name="decimal-attribute" type="nsi:classifier-decimal-attribute"/>
+                        <xs:element name="text-attribute" type="nsi:classifier-text-attribute"/>
+                        <xs:element name="reference-attribute" type="nsi:classifier-reference-attribute"/>
+                    </xs:choice>
+                </xs:sequence>
+                <xs:attribute name="version">
+                    <xs:annotation>
+                        <xs:documentation>Номер ревизии справочника</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="key-attribute-ref">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="3"/>
+                            <xs:maxLength value="36"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="classifier-data">
+        <xs:sequence>
+            <xs:element name="record" type="nsi:record" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="classifier-ref" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="2"/>
+                    <xs:maxLength value="36"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="record">
+        <xs:sequence>
+            <xs:element name="attribute-value" type="nsi:attribute-value" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="action" use="optional" default="add">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="add"/>
+                    <xs:enumeration value="update"/>
+                    <xs:enumeration value="remove"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="uid">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:maxLength value="36"/>
+                    <xs:minLength value="2"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="attribute-value">
+        <xs:choice>
+            <xs:element name="string">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="0"/>
+                        <xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="text">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="bool" type="xs:boolean"/>
+            <xs:element name="date" type="xs:date"/>
+            <xs:element name="integer" type="xs:integer"/>
+            <xs:element name="decimal" type="xs:decimal"/>
+            <xs:element name="reference">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="2"/>
+                        <xs:maxLength value="36"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:choice>
+        <xs:attribute name="attribute-ref" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="2"/>
+                    <xs:maxLength value="36"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="int-range">
+        <xs:attribute name="from" type="xs:integer"/>
+        <xs:attribute name="to" type="xs:integer"/>
+    </xs:complexType>
+    <xs:complexType name="decimal-range">
+        <xs:attribute name="from" type="xs:decimal"/>
+        <xs:attribute name="to" type="xs:decimal"/>
+    </xs:complexType>
+    <xs:complexType name="date-range">
+        <xs:attribute name="from" type="xs:date"/>
+        <xs:attribute name="to" type="xs:date"/>
+    </xs:complexType>
+    <xs:complexType name="composite-data">
+        <xs:sequence>
+            <xs:element name="data" type="nsi:classifier-data" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="classifier-ref" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="2"/>
+                    <xs:maxLength value="36"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+</xs:schema>
