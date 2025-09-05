@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<nsi:document
+        xmlns:nsi="urn://x-artefacts-nsi-gov-ru/services/cnsi/2.0.0.0">
+    <nsi:simple-classifier code="TestClassifier" name="Тестовый классификатор"
+                           uid="2fad55ce-854c-4044-873e-7ae806cc94cb" version="55" public-id="01-10991"
+                           tech-name="dr_2fad55ce854c4044873e7ae806cc94cb"
+                           key-attribute-ref="bd4e9c55-8587-4d85-a0ae-e9c9aa9f4ec1">
+        <nsi:description>
+            <![CDATA[TestClassifier]]>
+        </nsi:description>
+        <nsi:string-attribute uid="cf6621f2-438d-4744-8158-63bb963bb11f" name="ToSfrCode" required="true"
+                              autoFill="false" tech-name="f_cf6621f2438d4744815863bb963bb11f" unique="false" length="3"
+                              checkObscene="true" checkOrthography="false"/>
+        <nsi:string-attribute uid="fea2973c-541f-422d-9093-102c50c1f7cb" name="RegionCode" required="true"
+                              autoFill="false" tech-name="f_fea2973c541f422d9093102c50c1f7cb" unique="false" length="3"
+                              checkObscene="true" checkOrthography="false"/>
+
+    <!-- В справочнике отсутствует поле RegionName -->
+<!--        <nsi:string-attribute uid="94737d3c-3d52-47f5-bdd5-e4999fb9dbca" name="RegionName" required="true"-->
+<!--                              autoFill="false" tech-name="f_94737d3c3d5247f5bdd5e4999fb9dbca" unique="false"-->
+<!--                              length="255" checkObscene="true" checkOrthography="false"/>-->
+        <nsi:integer-attribute uid="bc947ef4-bc67-433a-99a3-10654ff62698" name="OfficeType" required="true"
+                               autoFill="false" tech-name="f_bc947ef4bc67433a99a310654ff62698" unique="false">\
+        </nsi:integer-attribute>
+    </nsi:simple-classifier>
+    <nsi:data classifier-ref="2fad55ce-854c-4044-873e-7ae806cc94cb">
+        <nsi:record uid="6907a38d-073f-4c3d-ba53-78aa4ae14482">
+            <nsi:attribute-value attribute-ref="cf6621f2-438d-4744-8158-63bb963bb11f">
+                <nsi:string>210</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="fea2973c-541f-422d-9093-102c50c1f7cb">
+                <nsi:string>013</nsi:string>
+            </nsi:attribute-value>
+<!--            <nsi:attribute-value attribute-ref="94737d3c-3d52-47f5-bdd5-e4999fb9dbca">-->
+<!--                <nsi:string>Республика Татарстан</nsi:string>-->
+<!--            </nsi:attribute-value>-->
+            <nsi:attribute-value attribute-ref="bc947ef4-bc67-433a-99a3-10654ff62698">
+                <nsi:integer>2</nsi:integer>
+            </nsi:attribute-value>
+        </nsi:record>
+        <nsi:record uid="13a10d15-7ff1-44e3-af76-a1c9d0e24ad6">
+            <nsi:attribute-value attribute-ref="cf6621f2-438d-4744-8158-63bb963bb11f">
+                <nsi:string>201</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="fea2973c-541f-422d-9093-102c50c1f7cb">
+                <nsi:string>087</nsi:string>
+            </nsi:attribute-value>
+<!--            <nsi:attribute-value attribute-ref="94737d3c-3d52-47f5-bdd5-e4999fb9dbca">-->
+<!--                <nsi:string>Москва</nsi:string>-->
+<!--            </nsi:attribute-value>-->
+            <nsi:attribute-value attribute-ref="bc947ef4-bc67-433a-99a3-10654ff62698">
+                <nsi:integer>2</nsi:integer>
+            </nsi:attribute-value>
+        </nsi:record>
+        <nsi:record uid="5e14677d-6aa7-43fb-8bb9-5c758fd21918">
+            <nsi:attribute-value attribute-ref="cf6621f2-438d-4744-8158-63bb963bb11f">
+                <nsi:string>059</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="fea2973c-541f-422d-9093-102c50c1f7cb">
+                <nsi:string>059</nsi:string>
+            </nsi:attribute-value>
+<!--            <nsi:attribute-value attribute-ref="94737d3c-3d52-47f5-bdd5-e4999fb9dbca">-->
+<!--                <nsi:string>Магаданская область</nsi:string>-->
+<!--            </nsi:attribute-value>-->
+            <nsi:attribute-value attribute-ref="bc947ef4-bc67-433a-99a3-10654ff62698">
+                <nsi:integer>2</nsi:integer>
+            </nsi:attribute-value>
+        </nsi:record>
+        <nsi:record uid="0e72e268-6b47-4cb9-aa77-e9dc37d47ead">
+            <nsi:attribute-value attribute-ref="cf6621f2-438d-4744-8158-63bb963bb11f">
+                <nsi:string>041</nsi:string>
+            </nsi:attribute-value>
+            <nsi:attribute-value attribute-ref="fea2973c-541f-422d-9093-102c50c1f7cb">
+                <nsi:string>041</nsi:string>
+            </nsi:attribute-value>
+<!--            <nsi:attribute-value attribute-ref="94737d3c-3d52-47f5-bdd5-e4999fb9dbca">-->
+<!--                <nsi:string>Белгородская область</nsi:string>-->
+<!--            </nsi:attribute-value>-->
+            <nsi:attribute-value attribute-ref="bc947ef4-bc67-433a-99a3-10654ff62698">
+                <nsi:integer>2</nsi:integer>
+            </nsi:attribute-value>
+        </nsi:record>
+    </nsi:data>
+</nsi:document>
