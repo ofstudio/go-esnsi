@@ -280,8 +280,9 @@ func TestNewSfr(t *testing.T) {
 		}
 
 		// Проверяем индекс ByOkato8 - должен содержать только один 8-значный код
-		if len(sfr.ByOkato8) != 1 {
-			t.Errorf("unexpected ByOkato8 length: %d, expected 1", len(sfr.ByOkato8))
+		records11_123456 := sfr.ByOkato11["12345600000"]
+		if len(records11_123456) != 1 {
+			t.Errorf("unexpected number of records for OKATO11 '12345600000': %d, expected 1", len(records11_123456))
 		}
 
 		records8_123456 := sfr.ByOkato8["12345600"]

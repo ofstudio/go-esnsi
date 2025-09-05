@@ -12,10 +12,14 @@ import (
 // Sfr - классификатор SFR_CO "Клиентские службы СФР".
 //
 // https://esnsi.gosuslugi.ru/classifiers/10991/
+//
+// Примечание: один офис может обслуживать несколько территорий обслуживания ОКАТО.
+// Также один код ОКАТО может обслуживаться несколькими офисами.
+// В этом случае в индекс ByOkato попадает последний из обработанных офисов.
 type Sfr struct {
 	esnsi.Classifier[SfrRecord]
 	ByOkato   map[string]*SfrRecord   // Индекс по коду ОКАТО как в исходном справочнике (например, "92430" или "92430000000")
-	ByOkato11 map[string]*SfrRecord   // Индекс по полному коду ОКАТО 11 символов (например, "92430000000")
+	ByOkato11 map[string][]*SfrRecord // Индекс по полному коду ОКАТО 11 символов (например, "92430000000")
 	ByOkato8  map[string][]*SfrRecord // Индекс по коду ОКАТО 8 символов (например, "92430000")
 	ByOkato5  map[string][]*SfrRecord // Индекс по коду ОКАТО 5 символов (например, "92430")
 	ByOkato2  map[string][]*SfrRecord // Индекс по коду ОКАТО 2 символа (например, "92")
@@ -24,7 +28,7 @@ type Sfr struct {
 // NewSfr - создает новый классификатор Sfr из XML-данных.
 func NewSfr(r io.Reader) (*Sfr, error) {
 	byOkato := make(map[string]*SfrRecord)
-	byOkato11 := make(map[string]*SfrRecord)
+	byOkato11 := make(map[string][]*SfrRecord)
 	byOkato8 := make(map[string][]*SfrRecord)
 	byOkato5 := make(map[string][]*SfrRecord)
 	byOkato2 := make(map[string][]*SfrRecord)
@@ -54,7 +58,11 @@ func NewSfr(r io.Reader) (*Sfr, error) {
 			byOkato[area] = rec
 			// Индекс по полному код ОКАТО 11 символов
 			okato11 := area + strings.Repeat("0", 11-len(area))
-			byOkato11[okato11] = rec
+			// В индекс по полному коду ОКАТО 11 символов
+			// добавляем только если такого кода еще нет
+			if _, exists := byOkato11[okato11]; !exists {
+				byOkato11[okato11] = append(byOkato11[okato11], rec)
+			}
 			// Индекс по коду ОКАТО 8 символов
 			okato8 := okato11[:8]
 			byOkato8[okato8] = append(byOkato8[okato8], rec)
