@@ -3,17 +3,8 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/ofstudio/go-esnsi.svg)](https://pkg.go.dev/github.com/ofstudio/go-esnsi)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ofstudio/go-esnsi)](https://goreportcard.com/report/github.com/ofstudio/go-esnsi)
 
-Библиотека для работы с классификаторами Единой системы нормативно-справочной информации (ЕСНСИ)
+Библиотека для работы со справочниками (классификаторами) Единой системы нормативно-справочной информации (ЕСНСИ)
 на языке Go.
-
-## Описание
-
-Данный модуль предоставляет инструменты для работы с классификаторами ЕСНСИ, 
-позволяя загружать и анализировать XML файлы, соответствующие стандартной XSD схеме ЕСНСИ. 
-Модуль разделен на два основных пакета:
-
-- `cnsi` - базовые структуры и разбор XML-файлов классификаторов формата ЦНСИ
-- `classifiers` - специализированные реализации конкретных классификаторов
 
 ## Установка
 
@@ -21,10 +12,17 @@
 go get github.com/ofstudio/go-esnsi
 ```
 
+## Пакет esnsi
 
-## Примеры использования
+Основной пакет предоставляет инструменты для работы с простыми классификаторами ЕСНСИ в формате XML ЦНСИ.
 
-### Загрузка и использование простого классификатора
+### Основные возможности:
+- Автоматическое декодирование XML простых классификаторов ЕСНСИ в типизированные структуры Go
+- Поддержка строковых и целочисленных атрибутов записей
+- Валидация типов полей структуры записи
+- Поддержка пользовательских обработчиков записей
+
+### Пример базового использования:
 
 ```go
 package main
@@ -32,106 +30,106 @@ package main
 import (
     "fmt"
     "os"
-    
-    "github.com/ofstudio/go-esnsi/cnsi"
+    "github.com/ofstudio/go-esnsi"
 )
 
-type MyRecord struct {
-	Name    string `esnsi:"Наименование"`
-	Address string `esnsi:"Адрес"`
-	Value   int    `esnsi:"Значение"`
+// Определяем структуру записи классификатора
+type RegionRecord struct {
+    Code   string `esnsi:"RegionCode"`
+    Name   string `esnsi:"RegionName"`
+    Type   int    `esnsi:"RegionType"`
 }
 
 func main() {
-    // Открываем файл с классификатором
-    file, err := os.Open("classifier.xml")
+    // Открываем XML файл классификатора
+    file, err := os.Open("regions.xml")
     if err != nil {
-        fmt.Printf("Ошибка открытия файла: %v\n", err)
-        return
+        panic(err)
     }
     defer file.Close()
-    
-    // Загружаем классификатор
-    classifier, err := cnsi.NewSimpleClassifier(r)
-    if err != nil {
-        fmt.Printf("Ошибка загрузки классификатора: %v\n", err)
-        return
-    }
-	
-    // Получаем записи из классификатора
-	var records []MyRecord
-	err := classifier.Unmarshal(&records, nil)
-	if err != nil {
-        fmt.Printf("Ошибка разбора классификатора: %v\n", err)
-        return
+
+    // Создаем декодер и классификатор
+    decoder := esnsi.NewDecoder[RegionRecord](file)
+    classifier := &esnsi.Classifier[RegionRecord]{}
+
+    // Декодируем XML в классификатор
+    if err := decoder.Decode(classifier); err != nil {
+        panic(err)
     }
 
-    // Выводим данные из классификатора
-    for _, record := range records {
-        fmt.Printf("Наименование: %s, Адрес: %s, Значение: %d\n", 
-                   record.Name, record.Address, record.Value)
+    // Используем данные
+    fmt.Printf("Классификатор: %s (%s)\n", classifier.Name, classifier.Code)
+    fmt.Printf("Версия: %d\n", classifier.Version)
+    fmt.Printf("Загружено записей: %d\n", len(classifier.Records))
+
+    // Обрабатываем записи
+    for _, record := range classifier.Records {
+        fmt.Printf("Регион %s: %s (тип %d)\n", record.Code, record.Name, record.Type)
     }
 }
 ```
 
-### Работа с классификатором клиентских служб СФР
+## Пакет classifiers
+
+Пакет `classifiers` содержит готовые к использованию реализации популярных классификаторов ЕСНСИ с дополнительными индексами для быстрого поиска записей.
+
+### Реализованные справочники:
+
+- **[SFR_CO](https://esnsi.gosuslugi.ru/classifiers/10991/)** — Клиентские службы СФР 
+- **[classifierOkato](https://esnsi.gosuslugi.ru/classifiers/16270/)** — Общероссийский классификатор объектов административно-территориального деления (ОКАТО)
+
+### Пример использования справочника СФР:
 
 ```go
 package main
 
 import (
     "fmt"
+    "log"
     "os"
-    
+
     "github.com/ofstudio/go-esnsi/classifiers"
 )
 
 func main() {
-    // Открываем файл с классификатором клиентских служб СФР
-    file, err := os.Open("SFR_CO.xml")
+    // Открываем файл с данными классификатора СФР
+    file, err := os.Open("SFR_CO_55UTF-8.xml")
     if err != nil {
-        fmt.Printf("Ошибка открытия файла: %v\n", err)
-        return
+        log.Fatal(err)
     }
     defer file.Close()
-    
-    // Загружаем классификатор
-    sfrCo, err := classifiers.NewSfrCo(file)
+
+    // Создаем классификатор из XML-файла
+    sfr, err := classifiers.NewSfr(file)
     if err != nil {
-        fmt.Printf("Ошибка загрузки классификатора СФР: %v\n", err)
-        return
+        log.Fatal(err)
     }
-    
-    // Поиск клиентской службы по коду ОКАТО
-    okato := "12345678901"
-    office, exists := sfrCo.ByOKATO[okato]
-    if exists {
-        fmt.Printf("Найдена клиентская служба: %s\n", office.ToSfrName)
-        fmt.Printf("Адрес: %s\n", office.Address)
-        fmt.Printf("Телефон: %s\n", office.Phone)
-        fmt.Printf("Почта: %s\n", office.Email)
-    } else {
-        fmt.Printf("Клиентская служба для кода ОКАТО %s не найдена\n", okato)
+
+    // Выводим информацию о классификаторе
+    fmt.Printf("Классификатор: %s\n", sfr.Name)
+    fmt.Printf("Версия: %d\n", sfr.Version)
+    fmt.Printf("Всего записей: %d\n", len(sfr.Records))
+
+    // Поиск службы по коду ОКАТО
+    if service := sfr.ByOkato["77401"]; service != nil {
+        fmt.Printf("Найдена служба: %s\n", service.ToSfrName)
+        fmt.Printf("Адрес: %s\n", service.Address)
+        fmt.Printf("Телефон: %s\n", service.Phone)
     }
-    
-    // Получение всех клиентских служб региона
-    regionCode := "77"
-    for _, record := range sfrCo.Records {
-        if record.RegionCode == regionCode {
-            fmt.Printf("Клиентская служба в регионе %s: %s\n", 
-                       record.RegionName, record.ToSfrName)
+
+    // Поиск всех служб в регионе по 5-значному коду ОКАТО
+    if services := sfr.ByOkato5["77000"]; len(services) > 0 {
+        fmt.Printf("\nНайдено %d служб в регионе:\n", len(services))
+        for _, service := range services {
+            fmt.Printf("- %s\n", service.ToSfrName)
         }
     }
 }
 ```
 
-## Документация
+## Документация ЕСНСИ
 
-Документация доступна в коде через комментарии в формате godoc.
-
-Более подробные методические рекомендации по работе с ЕСНСИ 
-доступны в документе `cnsi/doc/Методические рекомендации ЕСНСИ.docx`.
-
+Методические рекомендации по работе с ЕСНСИ доступны в документе `doc/Методические рекомендации ЕСНСИ.docx`.
 
 ## Лицензия
 
